@@ -1,0 +1,7 @@
+
+{
+    "project_name": "project name",
+    "directory_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "description": "A short description of the project.",
+    "author_name": "<user.name> <email>"
+}
