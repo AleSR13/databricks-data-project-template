@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "{{cookiecutter.project_name}}"
+description = "{{cookiecutter.description}}"
+version = "0.1.0"
+authors = "{{cookiecutter.author_name}}>"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10.10,<4.0"
+pyspark = "~3.5.0"
+delta-spark = "^3.0.0"
+databricks-sdk = "^0.38.0"
+
+
+[tool.poetry.group.dev.dependencies]
+coverage = {extras = ["toml"], version = "^7.6.0"}
+pytest = "^8.3.1"
+pytest-mock = "^3.14.0"
+pytest-cov = "^5.0.0"
+pyproject-flake8 = "^7.0.0"
+isort = "^5.13.2"
+black = "24.4.2"
+
+
+[tool.poetry.extras]
+spark = ["pyspark", "delta-spark"]
+
+
+[tool.black]
+line-length = 120
+target-version = ["py38"]
+
+[tool.pytest.ini_options]
+addopts = "--junitxml=junit/report.xml --cov --cov-report term-missing --cov-report xml:coverage.xml"
+testpaths = ["tests"]
+
+[tool.coverage.report]
+omit = ["tests/*", ".venv/*"]
+precision = 2
+show_missing = true
+skip_empty = false
+include = ["src/*"]
+
+[tool.coverage.run]
+command_line = "-m pytest -v tests/"
+omit = ["tests/*",".venv/*"]
+relative_files = true
+source = ["src"]
+
+
+[tool.flake8]
+max-line-length = 180
+extend-exclude = ["deploy", ".venv"]
+extend-ignore = "E203,E501"
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

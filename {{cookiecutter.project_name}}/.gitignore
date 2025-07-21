@@ -2,6 +2,7 @@
 
 __pycache__/
 data/**/*
+.python-version
 
 # OS generated files
 .DS_Store
